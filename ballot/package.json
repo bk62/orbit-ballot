@@ -1,0 +1,66 @@
+{
+  "name": "ballot",
+  "version": "0.1.0",
+  "source": "src/ballot/index.ts",
+  "module": "dist/lib/ballot.mjs",
+  "types": "dist/lib/ballot.d.ts",
+  "targets": {
+    "module": {
+      "source": "src/ballot/index.ts",
+      "isLibrary": true,
+      "outputFormat": "esmodule"
+    },
+    "browser": {
+      "context": "browser",
+      "source": "src/index.html",
+      "includeNodeModules": true,
+      "outputFormat": "esmodule",
+      "distDir": "dist/browser",
+      "engines": {
+        "browserlist": "> .5%, last 2 versions, not dead"
+      }
+    },
+    "node": {
+      "context": "node",
+      "source": "src/p2p_index.ts",
+      "outputFormat": "esmodule",
+      "distDir": "dist/node",
+      "engines": {
+        "node": ">=16"
+      }
+    }
+  },
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint",
+    "check": "tsc --noEmit",
+    "ci": "npm run build && npm run test & npm run lint && "
+  },
+  "devDependencies": {
+    "@parcel/packager-ts": "^2.7.0",
+    "@parcel/transformer-typescript-types": "^2.7.0",
+    "@types/node": "^18.11.9",
+    "@typescript-eslint/eslint-plugin": "^5.42.0",
+    "@typescript-eslint/parser": "^5.42.0",
+    "eslint": "^8.26.0",
+    "multiformats": "^9.9.0",
+    "multiformats-latest": "npm:multiformats@^10.0.2",
+    "parcel": "^2.7.0",
+    "prettier": "^2.7.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "ipfs": "^0.65.0",
+    "ipfs-core": "^0.17.0",
+    "orbit-db": "^0.28.7",
+    "@multiformats/multiaddr": "^11.0.7"
+  },
+  "overrides": {
+    "orbit-db": {
+      "multiformats": "^9.9.0"
+    }
+  }
+}
